@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation
+package com.yongjae_project.shopping_app.presentation.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

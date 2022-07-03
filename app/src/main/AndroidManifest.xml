@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Shopping_app"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.view.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Shopping_app">
