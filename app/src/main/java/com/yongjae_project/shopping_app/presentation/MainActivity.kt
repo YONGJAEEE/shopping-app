@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app
+package com.yongjae_project.shopping_app.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.yongjae_project.shopping_app.ui.theme.Shopping_appTheme
+import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

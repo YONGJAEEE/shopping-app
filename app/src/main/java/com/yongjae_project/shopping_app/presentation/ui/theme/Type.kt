@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.ui.theme
+package com.yongjae_project.shopping_app.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
