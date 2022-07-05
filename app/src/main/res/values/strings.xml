@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">용재가 만든 쇼핑앱</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="please_enter_word">검색어를 입력해주세요.</string>
 </resources>
