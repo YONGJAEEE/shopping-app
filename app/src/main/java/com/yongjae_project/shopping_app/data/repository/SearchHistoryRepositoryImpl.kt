@@ -11,8 +11,7 @@ class SearchHistoryRepositoryImpl (
         return localDataSource.getSearchHistory()
     }
 
-    override fun addSearchHistory(item: SearchHistoryItem) {
-        localDataSource.addSearchHistoryItem(item)
+    override fun addSearchHistory(searchHistoryItem: SearchHistoryItem) {
+        localDataSource.addSearchHistoryItem(searchHistoryItem)
     }
-
 }
