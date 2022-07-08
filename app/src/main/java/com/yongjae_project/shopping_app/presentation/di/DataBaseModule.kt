@@ -7,9 +7,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn
+@InstallIn(SingletonComponent::class)
 @Module
 class DatabaseModule {
     @Provides
@@ -18,10 +19,11 @@ class DatabaseModule {
         Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "user_db"
+            "app_db"
         ).fallbackToDestructiveMigration()
             .build()
 
     @Provides
-    fun provideUserDao(appDatabase: AppDatabase) = appDatabase.searchHistoryDao()
+    @Singleton
+    fun provideSearchHistoryDao(appDatabase: AppDatabase) = appDatabase.searchHistoryDao()
 }

@@ -1,7 +1,8 @@
-package com.yongjae_project.shopping_app.data.local
+package com.yongjae_project.shopping_app.data.local.dao
 
 import androidx.room.*
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SearchHistoryDAO {
@@ -13,6 +14,6 @@ interface SearchHistoryDAO {
     suspend fun deleteSearchHistoryItem(searchHistoryItem: SearchHistoryItem)
 
     @Query("SELECT * FROM searchHistory ORDER BY searchAt ASC LIMIT 20")
-    suspend fun getSearchHistory() : List<SearchHistoryItem>
+    fun getSearchHistory() : Flow<List<SearchHistoryItem>>
 
 }
