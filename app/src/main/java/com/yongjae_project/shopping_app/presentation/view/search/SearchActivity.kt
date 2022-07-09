@@ -51,16 +51,7 @@ fun SearchPage(searchViewModel: SearchViewModel = viewModel()) {
     Scaffold {
         Column {
             SearchTextField(searchViewModel)
-            LazyColumn() {
-                items(count = searchViewModel.searchHistories.value?.size ?: 0){ index ->
-                    val item = searchViewModel.searchHistories.value!![index]
-                    SearchHistoryItemView(
-                        SearchHistoryItem(
-                            item.searchText, item.searchAt
-                        )
-                    )
-                }
-            }
+            SearchHistoryList(searchViewModel)
         }
     }
 }
@@ -79,14 +70,36 @@ fun SearchTextField(searchViewModel: SearchViewModel = viewModel()) {
                 .fillMaxWidth()
                 .padding(all = 4.dp),
             shape = RoundedCornerShape(8.dp),
-            leadingIcon = {BackIcon()},
-            trailingIcon = { SearchIcon() },
+            leadingIcon = { BackIcon() },
+            trailingIcon = {
+                Button(
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
+                    onClick = {
+                        searchViewModel.addSearchHistory(textState.value)
+                    }) {
+                    SearchIcon()
+                }
+            },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
             )
         )
-        Divider(color= MainColor)
+        Divider(color = MainColor)
+    }
+}
+
+@Composable
+fun SearchHistoryList(searchViewModel: SearchViewModel = viewModel()) {
+    LazyColumn() {
+        items(count = searchViewModel.searchHistories.value?.size ?: 0) { index ->
+            val item = searchViewModel.searchHistories.value!![index]
+            SearchHistoryItemView(
+                SearchHistoryItem(
+                    item.searchText, item.searchAt
+                )
+            )
+        }
     }
 }
