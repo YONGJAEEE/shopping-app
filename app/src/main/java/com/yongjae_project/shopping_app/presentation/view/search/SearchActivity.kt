@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -14,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
@@ -23,9 +23,11 @@ import com.yongjae_project.shopping_app.presentation.component.SearchIcon
 import com.yongjae_project.shopping_app.presentation.ui.theme.MainColor
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
 import com.yongjae_project.shopping_app.presentation.view.search.widget.SearchHistoryItemView
-import com.yongjae_project.shopping_app.presentation.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
+
 
 @ExperimentalComposeUiApi
+@AndroidEntryPoint
 class SearchActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +51,16 @@ fun SearchPage(searchViewModel: SearchViewModel = viewModel()) {
     Scaffold {
         Column {
             SearchTextField(searchViewModel)
-            SearchHistoryItemView(
-                SearchHistoryItem(
-                    "검색어", "07.05"
-                )
-            )
+            LazyColumn() {
+                items(count = searchViewModel.searchHistories.value?.size ?: 0){ index ->
+                    val item = searchViewModel.searchHistories.value!![index]
+                    SearchHistoryItemView(
+                        SearchHistoryItem(
+                            item.searchText, item.searchAt
+                        )
+                    )
+                }
+            }
         }
     }
 }

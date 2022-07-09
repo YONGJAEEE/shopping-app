@@ -9,22 +9,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
-import com.yongjae_project.shopping_app.data.local.AppDatabase
-import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
 import com.yongjae_project.shopping_app.presentation.component.SearchIcon
 import com.yongjae_project.shopping_app.presentation.ui.theme.MainColor
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
 import com.yongjae_project.shopping_app.presentation.view.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
+@ExperimentalComposeUiApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +40,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+@ExperimentalComposeUiApi
 fun MainPage() {
     Scaffold() {
         SearchButton()
@@ -49,6 +48,7 @@ fun MainPage() {
 }
 
 @Composable
+@ExperimentalComposeUiApi
 fun SearchButton() {
     val context = LocalContext.current
     Button(
@@ -74,6 +74,7 @@ fun SearchButton() {
 
 @Preview(showBackground = true)
 @Composable
+@ExperimentalComposeUiApi
 fun DefaultPreview() {
     Shopping_appTheme {
         MainPage()
