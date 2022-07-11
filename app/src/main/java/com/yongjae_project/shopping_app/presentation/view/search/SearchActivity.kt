@@ -8,10 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,11 +45,12 @@ class SearchActivity : ComponentActivity() {
 
 @ExperimentalComposeUiApi
 @Composable
-fun SearchPage(searchViewModel: SearchViewModel = viewModel()) {
+fun SearchPage(searchViewModel: SearchViewModel) {
+    val items : List<SearchHistoryItem> by searchViewModel.searchHistories.observeAsState(listOf())
     Scaffold {
         Column {
             SearchTextField(searchViewModel)
-            SearchHistoryList(searchViewModel)
+            SearchHistoryList(items)
         }
     }
 }
@@ -91,10 +90,10 @@ fun SearchTextField(searchViewModel: SearchViewModel = viewModel()) {
 }
 
 @Composable
-fun SearchHistoryList(searchViewModel: SearchViewModel = viewModel()) {
+fun SearchHistoryList(items: List<SearchHistoryItem>) {
     LazyColumn() {
-        items(count = searchViewModel.searchHistories.value?.size ?: 0) { index ->
-            val item = searchViewModel.searchHistories.value!![index]
+        items(count = items.size) { index ->
+            val item = items[index]
             SearchHistoryItemView(
                 SearchHistoryItem(
                     item.searchText, item.searchAt

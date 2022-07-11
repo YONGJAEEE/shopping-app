@@ -1,7 +1,6 @@
 package com.yongjae_project.shopping_app.presentation.view.search
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,8 +11,6 @@ import com.yongjae_project.shopping_app.domain.usecase.GetSearchHistoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 @HiltViewModel
@@ -22,12 +19,13 @@ class SearchViewModel @Inject constructor(
     private val deleteSearchHistoryUseCase: DeleteSearchHistoryUseCase,
     private val getSearchHistoryUseCase: GetSearchHistoryUseCase,
 ) : ViewModel() {
-    val searchHistories : MutableLiveData<List<SearchHistoryItem>> = MutableLiveData()
+    private val _searchHistories : MutableLiveData<List<SearchHistoryItem>> = MutableLiveData()
+    val searchHistories : LiveData<List<SearchHistoryItem>> = _searchHistories
 
     init {
         viewModelScope.launch {
             getSearchHistoryUseCase().collect{
-                searchHistories.postValue(it)
+                _searchHistories.postValue(it)
             }
         }
     }
