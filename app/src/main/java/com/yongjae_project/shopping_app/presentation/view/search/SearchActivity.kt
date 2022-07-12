@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -46,7 +47,7 @@ class SearchActivity : ComponentActivity() {
 @ExperimentalComposeUiApi
 @Composable
 fun SearchPage(searchViewModel: SearchViewModel) {
-    val items : List<SearchHistoryItem> by searchViewModel.searchHistories.observeAsState(listOf())
+    val items: List<SearchHistoryItem> by searchViewModel.searchHistories.observeAsState(listOf())
     Scaffold {
         Column {
             SearchTextField(searchViewModel)
@@ -73,6 +74,10 @@ fun SearchTextField(searchViewModel: SearchViewModel = viewModel()) {
             trailingIcon = {
                 Button(
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
+                    elevation = elevation(
+                        defaultElevation = 0.dp,
+                        pressedElevation = 0.dp,
+                    ),
                     onClick = {
                         searchViewModel.addSearchHistory(textState.value)
                     }) {
