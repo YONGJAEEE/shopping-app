@@ -36,7 +36,6 @@ fun SearchIcon(color : Color? = null) {
 @Composable
 fun ClearIcon(color : Color? = null) {
     Icon(
-        modifier = Modifier.size(30.dp),
         imageVector = Icons.Default.Clear,
         contentDescription = "",
         tint = color ?: Color.Gray,

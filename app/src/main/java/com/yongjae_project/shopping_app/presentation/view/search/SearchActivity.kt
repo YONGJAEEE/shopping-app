@@ -51,14 +51,14 @@ fun SearchPage(searchViewModel: SearchViewModel) {
     Scaffold {
         Column {
             SearchTextField(searchViewModel)
-            SearchHistoryList(items)
+            SearchHistoryList(items, searchViewModel = searchViewModel)
         }
     }
 }
 
 @ExperimentalComposeUiApi
 @Composable
-fun SearchTextField(searchViewModel: SearchViewModel = viewModel()) {
+fun SearchTextField(searchViewModel: SearchViewModel) {
     val textState: MutableState<String> = remember { mutableStateOf("") }
     Column {
         TextField(
@@ -95,14 +95,17 @@ fun SearchTextField(searchViewModel: SearchViewModel = viewModel()) {
 }
 
 @Composable
-fun SearchHistoryList(items: List<SearchHistoryItem>) {
+fun SearchHistoryList(items: List<SearchHistoryItem>, searchViewModel: SearchViewModel) {
     LazyColumn() {
         items(count = items.size) { index ->
             val item = items[index]
             SearchHistoryItemView(
                 SearchHistoryItem(
-                    item.searchText, item.searchAt
-                )
+                    item.searchText, item.searchAt,
+                ),
+                clearButtonTapEvent = {
+                    searchViewModel.deleteSearchHistory(item)
+                }
             )
         }
     }

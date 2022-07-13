@@ -13,7 +13,7 @@ interface SearchHistoryDAO {
     @Delete
     suspend fun deleteSearchHistoryItem(searchHistoryItem: SearchHistoryItem)
 
-    @Query("SELECT * FROM searchHistory ORDER BY searchAt ASC LIMIT 20")
+    @Query("SELECT * FROM searchHistory ORDER BY searchAt DESC LIMIT 20")
     fun getSearchHistory() : Flow<List<SearchHistoryItem>>
 
 }

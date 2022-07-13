@@ -1,6 +1,9 @@
 package com.yongjae_project.shopping_app.presentation.view.search.widget
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,10 +18,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Composable
-fun SearchHistoryItemView(searchHistoryItem: SearchHistoryItem) {
+fun SearchHistoryItemView(searchHistoryItem: SearchHistoryItem, clearButtonTapEvent: () -> Unit) {
 
     val dateFormat = SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH)
-    val searchAt : Date = dateFormat.parse(searchHistoryItem.searchAt)!!
+    val searchAt: Date = dateFormat.parse(searchHistoryItem.searchAt)!!
 
     Box(
         modifier = Modifier
@@ -43,11 +46,22 @@ fun SearchHistoryItemView(searchHistoryItem: SearchHistoryItem) {
                     .wrapContentWidth(Alignment.Start)
             )
             Text(
-                text = "${searchAt.month}.${searchAt.date}",
+                text = "${searchAt.month + 1}.${searchAt.date}", //TODO- Refactor with not deprecated code
                 maxLines = 1
             )
             Spacer(Modifier.size(4.dp))
-            ClearIcon()
+            Button(
+                onClick = clearButtonTapEvent,
+                elevation = elevation(
+                    defaultElevation = 0.dp,
+                    pressedElevation = 0.dp,
+                ),
+                modifier = Modifier.size(30.dp),
+                contentPadding = PaddingValues(all = 0.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
+            ) {
+                ClearIcon()
+            }
         }
     }
 }
