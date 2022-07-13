@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation.component
+package com.yongjae_project.shopping_app.presentation.widget.atom
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size

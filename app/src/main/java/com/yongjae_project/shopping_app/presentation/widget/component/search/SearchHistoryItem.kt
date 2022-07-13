@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation.view.search.widget
+package com.yongjae_project.shopping_app.presentation.widget.component.search
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
-import com.yongjae_project.shopping_app.presentation.component.ClearIcon
-import com.yongjae_project.shopping_app.presentation.component.SearchIcon
+import com.yongjae_project.shopping_app.presentation.widget.atom.ClearIcon
+import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
 import java.text.SimpleDateFormat
 import java.util.*
 

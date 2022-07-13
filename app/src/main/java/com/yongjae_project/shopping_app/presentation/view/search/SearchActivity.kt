@@ -15,13 +15,12 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
-import com.yongjae_project.shopping_app.presentation.component.BackIcon
-import com.yongjae_project.shopping_app.presentation.component.SearchIcon
+import com.yongjae_project.shopping_app.presentation.widget.atom.BackIcon
+import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
 import com.yongjae_project.shopping_app.presentation.ui.theme.MainColor
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
-import com.yongjae_project.shopping_app.presentation.view.search.widget.SearchHistoryItemView
+import com.yongjae_project.shopping_app.presentation.widget.component.search.SearchHistoryItemView
 import dagger.hilt.android.AndroidEntryPoint
 
 
