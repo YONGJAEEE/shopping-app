@@ -1,24 +1,23 @@
 package com.yongjae_project.shopping_app.presentation.view.main
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
-import com.yongjae_project.shopping_app.presentation.ui.theme.MainColor
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.yongjae_project.shopping_app.presentation.model.Pages
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
-import com.yongjae_project.shopping_app.presentation.view.search.SearchActivity
+import com.yongjae_project.shopping_app.presentation.view.search.SearchPage
+import com.yongjae_project.shopping_app.presentation.view.search.SearchViewModel
+import com.yongjae_project.shopping_app.presentation.widget.component.main.MainSearchButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,51 +31,36 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainPage()
+                    val navController = rememberNavController()
+                    val searchViewModel: SearchViewModel by viewModels()
+                    NavigationComponent(navController, searchViewModel)
                 }
             }
         }
     }
 }
 
-@Composable
 @ExperimentalComposeUiApi
-fun MainPage() {
-    Scaffold() {
-        SearchButton()
-    }
-}
-
 @Composable
-@ExperimentalComposeUiApi
-fun SearchButton() {
-    val context = LocalContext.current
-    Button(
-        onClick = {
-            context.startActivity(Intent(context, SearchActivity::class.java))
-        },
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
-        border = BorderStroke(width = 1.dp, color = MainColor),
-        modifier = Modifier.padding(all = 16.dp),
+fun NavigationComponent(navController: NavHostController, searchViewModel: SearchViewModel) {
+    NavHost(
+        navController = navController,
+        startDestination = Pages.MAIN.name
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box() { SearchIcon() }
-            Box(
-                modifier =
-                Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.Start)
-            ) {}
+        composable(Pages.MAIN.name) {
+            MainPage(navController)
+        }
+        composable(Pages.SEARCH.name) {
+            SearchPage(navController, searchViewModel)
         }
     }
 }
 
 
-@Preview(showBackground = true)
 @Composable
 @ExperimentalComposeUiApi
-fun DefaultPreview() {
-    Shopping_appTheme {
-        MainPage()
+fun MainPage(navController : NavHostController) {
+    Scaffold {
+        MainSearchButton(navController)
     }
 }
