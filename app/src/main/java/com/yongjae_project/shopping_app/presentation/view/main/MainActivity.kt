@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yongjae_project.shopping_app.presentation.model.Pages
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
+import com.yongjae_project.shopping_app.presentation.view.result.ResultPage
 import com.yongjae_project.shopping_app.presentation.view.search.SearchPage
 import com.yongjae_project.shopping_app.presentation.view.search.SearchViewModel
 import com.yongjae_project.shopping_app.presentation.widget.component.main.MainSearchButton
@@ -52,6 +53,9 @@ fun NavigationComponent(navController: NavHostController, searchViewModel: Searc
         }
         composable(Pages.SEARCH.name) {
             SearchPage(navController, searchViewModel)
+        }
+        composable(Pages.RESULT.name) {
+            ResultPage(navController)
         }
     }
 }
