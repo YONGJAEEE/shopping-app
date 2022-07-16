@@ -1,8 +1,8 @@
 package com.yongjae_project.shopping_app.domain.repository
 
-import com.yongjae_project.shopping_app.data.model.SearchedShoppingItem
-import kotlinx.coroutines.flow.Flow
+import com.yongjae_project.shopping_app.data.model.RemoteResult
+import com.yongjae_project.shopping_app.data.model.ShoppingResponse
 
 interface SearchShoppingListRepository {
-    fun getSearchShoppingList() : Flow<Result<List<SearchedShoppingItem>>>
+    suspend fun getSearchShoppingList(query: String) : RemoteResult<ShoppingResponse>
 }

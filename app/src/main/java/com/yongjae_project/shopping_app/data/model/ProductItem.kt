@@ -1,6 +1,6 @@
 package com.yongjae_project.shopping_app.data.model
 
-data class SearchedShoppingItem(
+data class ProductItem(
     val title: String,
     val link: String,
     val image: String,

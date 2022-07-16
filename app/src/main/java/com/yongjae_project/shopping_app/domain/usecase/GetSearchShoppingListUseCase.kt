@@ -1,4 +1,7 @@
 package com.yongjae_project.shopping_app.domain.usecase
 
-class GetSearchShoppingListUseCase {
+import com.yongjae_project.shopping_app.domain.repository.SearchShoppingListRepository
+
+class GetSearchShoppingListUseCase(private val repository: SearchShoppingListRepository) {
+   fun invoke() = repository.getSearchShoppingList()
 }
