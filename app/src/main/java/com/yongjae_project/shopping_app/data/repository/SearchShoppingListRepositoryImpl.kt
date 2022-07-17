@@ -10,14 +10,11 @@ class SearchShoppingListRepositoryImpl(
 ) : SearchShoppingListRepository {
    override suspend fun getSearchShoppingList(query: String): RemoteResult<ShoppingResponse> {
       val response = dataSource.getShoppingList(query)
-      return if(response.isSuccessful){
-         var res: ShoppingResponse
+      if(response.isSuccessful){
          response.body()?.let {
-            res = it
+              return RemoteResult.Success(data = it)
          }
-         return RemoteResult.Success(data = res)
-      }else {
-         return RemoteResult.Error(response.message())
       }
+      return  RemoteResult.Error(response.message())
    }
 }

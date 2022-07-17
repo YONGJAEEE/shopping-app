@@ -1,9 +1,11 @@
 package com.yongjae_project.shopping_app.presentation.di
 
 import com.yongjae_project.shopping_app.domain.repository.SearchHistoryRepository
+import com.yongjae_project.shopping_app.domain.repository.SearchShoppingListRepository
 import com.yongjae_project.shopping_app.domain.usecase.AddSearchHistoryUseCase
 import com.yongjae_project.shopping_app.domain.usecase.DeleteSearchHistoryUseCase
 import com.yongjae_project.shopping_app.domain.usecase.GetSearchHistoryUseCase
+import com.yongjae_project.shopping_app.domain.usecase.SearchShoppingListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,4 +34,9 @@ object UseCaseModule {
         repository: SearchHistoryRepository
     ) = GetSearchHistoryUseCase(repository)
 
+    @Singleton
+    @Provides
+    fun provideSearchShoppingListUseCase(
+        repository: SearchShoppingListRepository
+    ) = SearchShoppingListUseCase(repository)
 }
