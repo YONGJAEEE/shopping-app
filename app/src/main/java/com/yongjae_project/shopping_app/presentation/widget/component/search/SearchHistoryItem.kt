@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
 import com.yongjae_project.shopping_app.presentation.widget.atom.ClearIcon
 import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
+import com.yongjae_project.shopping_app.presentation.widget.atom.TransparentButton
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,15 +51,9 @@ fun SearchHistoryItemView(searchHistoryItem: SearchHistoryItem, clearButtonTapEv
                 maxLines = 1
             )
             Spacer(Modifier.size(4.dp))
-            Button(
+            TransparentButton(
                 onClick = clearButtonTapEvent,
-                elevation = elevation(
-                    defaultElevation = 0.dp,
-                    pressedElevation = 0.dp,
-                ),
                 modifier = Modifier.size(30.dp),
-                contentPadding = PaddingValues(all = 0.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
             ) {
                 ClearIcon()
             }

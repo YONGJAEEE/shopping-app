@@ -20,6 +20,7 @@ import com.yongjae_project.shopping_app.presentation.ui.theme.MainColor
 import com.yongjae_project.shopping_app.presentation.view.search.SearchViewModel
 import com.yongjae_project.shopping_app.presentation.widget.atom.BackIcon
 import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
+import com.yongjae_project.shopping_app.presentation.widget.atom.TransparentButton
 
 @ExperimentalComposeUiApi
 @Composable
@@ -27,59 +28,47 @@ fun SearchTextField(navController: NavHostController, searchViewModel: SearchVie
     val textState: MutableState<String> = remember { mutableStateOf("") }
     val context = LocalContext.current
     val enterWordMessage = stringResource(id = R.string.please_enter_word)
-    Column {
-        TextField(
-            value = textState.value,
-            placeholder = { Text(enterWordMessage) },
-            onValueChange = { textState.value = it },
-            singleLine = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 4.dp),
-            shape = RoundedCornerShape(8.dp),
-            leadingIcon = {
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-                    elevation = ButtonDefaults.elevation(
-                        defaultElevation = 0.dp,
-                        pressedElevation = 0.dp,
-                    ),
-                    modifier = Modifier.size(30.dp),
-                    contentPadding = PaddingValues(all = 0.dp),
-                    onClick = {
-                        navController.popBackStack()
-                    },
-                ) {
-                    BackIcon()
-                }
-            },
-            trailingIcon = {
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-                    modifier = Modifier.size(30.dp),
-                    contentPadding = PaddingValues(all = 0.dp),
-                    elevation = ButtonDefaults.elevation(
-                        defaultElevation = 0.dp,
-                        pressedElevation = 0.dp,
-                    ),
-                    onClick = {
-                        if (textState.value != "") {
-                            searchViewModel.addSearchHistory(textState.value)
-                            textState.value = ""
-                        }else{
-                            context.showToast(enterWordMessage)
-                        }
-                    },
-                ) {
-                    SearchIcon()
-                }
-            },
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
+    Column(
+        content = {
+            TextField(
+                value = textState.value,
+                placeholder = { Text(enterWordMessage) },
+                onValueChange = { textState.value = it },
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = 4.dp),
+                shape = RoundedCornerShape(8.dp),
+                leadingIcon = {
+                    TransparentButton(
+                        modifier = Modifier.size(30.dp),
+                        onClick = {
+                            navController.popBackStack()
+                        },
+                        content = { BackIcon() }
+                    )
+                },
+                trailingIcon = {
+                    TransparentButton(
+                        modifier = Modifier.size(30.dp),
+                        onClick = {
+                            if (textState.value != "") {
+                                searchViewModel.addSearchHistory(textState.value)
+                                textState.value = ""
+                            } else {
+                                context.showToast(enterWordMessage)
+                            }
+                        },
+                        content = { SearchIcon() }
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                )
             )
-        )
-        Divider(color = MainColor)
-    }
+            Divider(color = MainColor)
+        }
+    )
 }
