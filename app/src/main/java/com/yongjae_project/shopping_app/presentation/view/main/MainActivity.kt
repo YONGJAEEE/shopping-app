@@ -13,12 +13,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yongjae_project.shopping_app.presentation.model.Pages
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
-import com.yongjae_project.shopping_app.presentation.view.result.ResultPage
+import com.yongjae_project.shopping_app.presentation.view.product_list.ProductListPage
+import com.yongjae_project.shopping_app.presentation.view.product_list.ProductListViewModel
 import com.yongjae_project.shopping_app.presentation.view.search.SearchPage
 import com.yongjae_project.shopping_app.presentation.view.search.SearchViewModel
 import com.yongjae_project.shopping_app.presentation.widget.component.main.MainSearchButton
+import com.yongjae_project.shopping_app.util.Pages
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +35,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val searchViewModel: SearchViewModel by viewModels()
-                    NavigationComponent(navController, searchViewModel)
+                    val productListViewModel: ProductListViewModel by viewModels()
+                    NavigationComponent(navController, searchViewModel, productListViewModel)
                 }
             }
         }
@@ -43,7 +45,11 @@ class MainActivity : ComponentActivity() {
 
 @ExperimentalComposeUiApi
 @Composable
-fun NavigationComponent(navController: NavHostController, searchViewModel: SearchViewModel) {
+fun NavigationComponent(
+    navController: NavHostController,
+    searchViewModel: SearchViewModel,
+    productListViewModel: ProductListViewModel,
+) {
     NavHost(
         navController = navController,
         startDestination = Pages.MAIN.name
@@ -54,8 +60,8 @@ fun NavigationComponent(navController: NavHostController, searchViewModel: Searc
         composable(Pages.SEARCH.name) {
             SearchPage(navController, searchViewModel)
         }
-        composable(Pages.RESULT.name) {
-            ResultPage(navController)
+        composable(Pages.PRODUCT_LIST.name) {
+            ProductListPage(navController, productListViewModel)
         }
     }
 }
@@ -63,7 +69,7 @@ fun NavigationComponent(navController: NavHostController, searchViewModel: Searc
 
 @Composable
 @ExperimentalComposeUiApi
-fun MainPage(navController : NavHostController) {
+fun MainPage(navController: NavHostController) {
     Scaffold {
         MainSearchButton(navController)
     }

@@ -14,9 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.yongjae_project.shopping_app.presentation.model.Pages
 import com.yongjae_project.shopping_app.presentation.ui.theme.MainColor
 import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
+import com.yongjae_project.shopping_app.util.Pages
 
 @Composable
 @ExperimentalComposeUiApi

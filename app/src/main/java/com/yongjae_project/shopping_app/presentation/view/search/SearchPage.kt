@@ -7,7 +7,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavHostController
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
-import com.yongjae_project.shopping_app.presentation.widget.component.search.*
+import com.yongjae_project.shopping_app.presentation.widget.component.search_history.*
 
 
 @ExperimentalComposeUiApi
@@ -17,7 +17,7 @@ fun SearchPage(navController: NavHostController, searchViewModel: SearchViewMode
     Scaffold {
         Column {
             SearchTextField(navController, searchViewModel)
-            SearchHistoryList(items, searchViewModel = searchViewModel)
+            SearchHistoryList(items, searchViewModel, navController)
         }
     }
 }

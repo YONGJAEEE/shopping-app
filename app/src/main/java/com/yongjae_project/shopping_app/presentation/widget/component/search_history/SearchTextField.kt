@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation.widget.component.search
+package com.yongjae_project.shopping_app.presentation.widget.component.search_history
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
