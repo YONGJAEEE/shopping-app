@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.room.Query
 import com.yongjae_project.shopping_app.data.model.ProductItem
 import com.yongjae_project.shopping_app.data.model.SearchHistoryItem
 import com.yongjae_project.shopping_app.presentation.widget.atom.BackIcon
@@ -20,8 +21,14 @@ import com.yongjae_project.shopping_app.presentation.widget.atom.TransparentButt
 import com.yongjae_project.shopping_app.presentation.widget.component.product_list.ProductList
 
 @Composable
-fun ProductListPage(navController: NavHostController, productListViewModel: ProductListViewModel) {
+fun ProductListPage(
+    query: String,
+    navController: NavHostController,
+    productListViewModel: ProductListViewModel,
+) {
     val items: List<ProductItem> by productListViewModel.productList.observeAsState(listOf())
+    productListViewModel.searchProductList(query)
+
     Scaffold {
         Column {
             TransparentButton(

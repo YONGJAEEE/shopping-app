@@ -17,7 +17,7 @@ class ProductListViewModel @Inject constructor(
     private val _productList : MutableLiveData<List<ProductItem>> = MutableLiveData()
     val productList : LiveData<List<ProductItem>> = _productList
 
-    init {
+    fun searchProductList(query: String) {
         viewModelScope.launch{
             _productList.postValue(searchShoppingListUseCase("에어팟" ).data?.items)
         }

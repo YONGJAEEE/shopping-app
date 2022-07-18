@@ -10,9 +10,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.yongjae_project.shopping_app.presentation.ui.theme.Shopping_appTheme
 import com.yongjae_project.shopping_app.presentation.view.product_list.ProductListPage
 import com.yongjae_project.shopping_app.presentation.view.product_list.ProductListViewModel
@@ -60,8 +62,15 @@ fun NavigationComponent(
         composable(Pages.SEARCH.name) {
             SearchPage(navController, searchViewModel)
         }
-        composable(Pages.PRODUCT_LIST.name) {
-            ProductListPage(navController, productListViewModel)
+        composable(
+            "${Pages.PRODUCT_LIST.name}/{query}",
+            arguments = listOf(navArgument("query") { type = NavType.StringType })
+        ) { entry ->
+            ProductListPage(
+                entry.arguments?.getString("query") ?: "",
+                navController,
+                productListViewModel,
+            )
         }
     }
 }
