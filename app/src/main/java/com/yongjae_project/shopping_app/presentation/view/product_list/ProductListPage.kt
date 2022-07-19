@@ -26,7 +26,7 @@ fun ProductListPage(
     Scaffold {
         Column {
             TransparentButton(
-                modifier = Modifier.size(30.dp),
+                modifier = Modifier.size(50.dp),
                 onClick = {
                     navController.popBackStack()
                 },

@@ -16,7 +16,9 @@ fun TransparentButton(
     content: @Composable RowScope.() -> Unit
 ) {
     Button(
-        onClick = onClick, modifier = modifier, elevation = ButtonDefaults.elevation(
+        onClick = onClick,
+        modifier = modifier,
+        elevation = ButtonDefaults.elevation(
             defaultElevation = 0.dp,
             pressedElevation = 0.dp,
         ),
