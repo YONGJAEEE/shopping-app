@@ -32,7 +32,7 @@ fun ProductListPage(
                 },
                 content = { BackIcon() }
             )
-            ProductList(items)
+            ProductList(items, productListViewModel)
         }
     }
 }

@@ -8,8 +8,8 @@ import com.yongjae_project.shopping_app.domain.repository.SearchShoppingListRepo
 class SearchShoppingListRepositoryImpl(
    private val dataSource: SearchShoppingListRemoteDataSource
 ) : SearchShoppingListRepository {
-   override suspend fun getSearchShoppingList(query: String): RemoteResult<ShoppingResponse> {
-      val response = dataSource.getShoppingList(query)
+   override suspend fun getSearchShoppingList(query: String, page: Int): RemoteResult<ShoppingResponse> {
+      val response = dataSource.getShoppingList(query, page)
       if(response.isSuccessful){
          response.body()?.let {
               return RemoteResult.Success(data = it)

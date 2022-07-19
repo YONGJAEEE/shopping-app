@@ -7,7 +7,7 @@ import retrofit2.Response
 class SearchShoppingListRemoteDataSourceImpl (
    private val service : ShoppingAPIService
 ) : SearchShoppingListRemoteDataSource {
-   override suspend fun getShoppingList(query: String): Response<ShoppingResponse> {
-      return service.getShoppingList(query)
+   override suspend fun getShoppingList(query: String, page: Int): Response<ShoppingResponse> {
+      return service.getShoppingList(query, page)
    }
 }

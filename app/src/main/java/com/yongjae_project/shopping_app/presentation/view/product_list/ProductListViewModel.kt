@@ -16,10 +16,22 @@ class ProductListViewModel @Inject constructor(
 ) : ViewModel() {
     private val _productList : MutableLiveData<List<ProductItem>> = MutableLiveData()
     val productList : LiveData<List<ProductItem>> = _productList
+    private var _query= ""
 
     fun searchProductList(query: String) {
+        _query = query
         viewModelScope.launch{
-            _productList.postValue(searchShoppingListUseCase(query).data?.items)
+            _productList.postValue(searchShoppingListUseCase(_query, 1).data?.items)
+        }
+    }
+
+    fun addProductList(page: Int) {
+        viewModelScope.launch{
+            val tempList : MutableList<ProductItem>? = _productList.value?.toMutableList()
+            searchShoppingListUseCase(_query, page).data?.items?.let { tempList?.addAll(it) }
+            if(tempList != null){
+                _productList.postValue(tempList)
+            }
         }
     }
 }
