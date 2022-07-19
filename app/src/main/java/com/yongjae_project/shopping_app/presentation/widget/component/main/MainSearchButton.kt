@@ -30,13 +30,13 @@ fun MainSearchButton(navController : NavHostController) {
         modifier = Modifier.padding(all = 16.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Box() { SearchIcon() }
+            Box { SearchIcon() }
             Box(
                 modifier =
                 Modifier
                     .weight(1f)
                     .wrapContentWidth(Alignment.Start)
-            ) {}
+            )
         }
     }
 }

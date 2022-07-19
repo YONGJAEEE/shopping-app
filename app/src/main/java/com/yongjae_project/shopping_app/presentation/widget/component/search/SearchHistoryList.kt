@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation.widget.component.search_history
+package com.yongjae_project.shopping_app.presentation.widget.component.search
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -25,7 +25,7 @@ fun SearchHistoryList(
                     searchViewModel.deleteSearchHistory(item)
                 },
                 itemRowTapEvent = {
-                    navHostController.navigate(Pages.PRODUCT_LIST.name)
+                    navHostController.navigate("${Pages.PRODUCT_LIST.name}/${item.searchText}")
                 }
             )
         }

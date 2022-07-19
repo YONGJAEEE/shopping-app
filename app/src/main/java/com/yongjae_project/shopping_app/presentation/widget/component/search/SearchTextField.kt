@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation.widget.component.search_history
+package com.yongjae_project.shopping_app.presentation.widget.component.search
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +21,7 @@ import com.yongjae_project.shopping_app.presentation.view.search.SearchViewModel
 import com.yongjae_project.shopping_app.presentation.widget.atom.BackIcon
 import com.yongjae_project.shopping_app.presentation.widget.atom.SearchIcon
 import com.yongjae_project.shopping_app.presentation.widget.atom.TransparentButton
+import com.yongjae_project.shopping_app.util.Pages
 
 @ExperimentalComposeUiApi
 @Composable
@@ -53,6 +54,7 @@ fun SearchTextField(navController: NavHostController, searchViewModel: SearchVie
                         modifier = Modifier.size(30.dp),
                         onClick = {
                             if (textState.value != "") {
+                                navController.navigate("${Pages.PRODUCT_LIST.name}/${textState.value}")
                                 searchViewModel.addSearchHistory(textState.value)
                                 textState.value = ""
                             } else {

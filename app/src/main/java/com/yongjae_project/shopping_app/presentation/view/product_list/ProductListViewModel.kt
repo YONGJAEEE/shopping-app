@@ -19,7 +19,7 @@ class ProductListViewModel @Inject constructor(
 
     fun searchProductList(query: String) {
         viewModelScope.launch{
-            _productList.postValue(searchShoppingListUseCase("에어팟" ).data?.items)
+            _productList.postValue(searchShoppingListUseCase(query).data?.items)
         }
     }
 }
