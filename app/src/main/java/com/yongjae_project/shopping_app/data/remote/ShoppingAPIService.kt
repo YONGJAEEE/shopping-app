@@ -21,7 +21,7 @@ interface ShoppingAPIService {
          encoded = true
       ) query: String,
       @Query(
-         "page",
+         "start",
          encoded = true
       ) page: Int
    ): Response<ShoppingResponse>

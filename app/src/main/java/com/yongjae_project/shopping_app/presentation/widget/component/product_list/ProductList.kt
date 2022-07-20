@@ -24,6 +24,6 @@ fun ProductList(
         }
     }
     state.OnBottomReached {
-        productListViewModel.addProductList((items.size / SHOPPING_API_DISPLAY_SIZE) + 1)
+        productListViewModel.addProductList()
     }
 }
