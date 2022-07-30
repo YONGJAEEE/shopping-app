@@ -1,4 +1,4 @@
-package com.yongjae_project.shopping_app.presentation.di
+package com.yongjae_project.shopping_app.di
 
 import com.yongjae_project.shopping_app.data.datasource.SearchHistoryLocalDataSource
 import com.yongjae_project.shopping_app.data.datasource.SearchShoppingListRemoteDataSource
