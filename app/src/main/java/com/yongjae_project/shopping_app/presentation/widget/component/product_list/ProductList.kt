@@ -24,6 +24,6 @@ fun ProductList(
         }
     }
     state.OnBottomReached {
-        productListViewModel.addProductList()
+        productListViewModel.searchProductList()
     }
 }

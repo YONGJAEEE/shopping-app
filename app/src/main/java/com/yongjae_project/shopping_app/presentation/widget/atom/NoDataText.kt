@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.yongjae_project.shopping_app.R
 
 @Composable
-fun TransparentButton() {
+fun NoDataText() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
