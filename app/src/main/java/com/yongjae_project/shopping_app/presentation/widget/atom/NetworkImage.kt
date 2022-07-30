@@ -5,9 +5,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
+import com.yongjae_project.shopping_app.R
 
 @Composable
 fun NetworkImage(url: String, modifier: Modifier = Modifier){
@@ -16,8 +18,8 @@ fun NetworkImage(url: String, modifier: Modifier = Modifier){
             imageModel = url,
             contentScale = ContentScale.Crop,
             circularReveal = CircularReveal(duration = 250),
-            placeHolder = ImageBitmap(width = 50, height = 50),
-            error = ImageBitmap(width = 50, height = 50),
+            placeHolder = ImageBitmap.imageResource(R.drawable.image_place_holder),
+            error = ImageBitmap.imageResource(R.drawable.error),
         )
     })
 
