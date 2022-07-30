@@ -3,6 +3,7 @@ package com.yongjae_project.shopping_app.presentation.view.product_list
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -32,7 +33,9 @@ fun ProductListPage(
                 },
                 content = { BackIcon() }
             )
-            ProductList(items, productListViewModel)
+            if (items.isNotEmpty()) {
+                ProductList(items, productListViewModel)
+            } else TransparentButton()
         }
     }
 }
