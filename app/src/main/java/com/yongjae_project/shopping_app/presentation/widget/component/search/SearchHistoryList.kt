@@ -26,6 +26,7 @@ fun SearchHistoryList(
                 },
                 itemRowTapEvent = {
                     navHostController.navigate("${Pages.PRODUCT_LIST.name}/${item.searchText}")
+                    searchViewModel.addSearchHistory(item.searchText)
                 }
             )
         }
